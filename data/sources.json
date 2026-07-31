@@ -1,0 +1,6 @@
+[
+  { "id": "ablesci", "label": "Ablesci / WoS", "kind": "journal", "metrics": ["Impact Factor", "JCR quartile", "subject category"], "cadence": "annual", "url": "https://www.ablesci.com/journal", "import": "csv, json" },
+  { "id": "scopus", "label": "Scopus Source List", "kind": "journal and conference series", "metrics": ["CiteScore", "SNIP", "SJR", "percentile", "source type"], "cadence": "monthly source list; annual ASJC refresh", "url": "https://www.elsevier.com/en-gb/products/scopus/content", "import": "xlsx, xls, csv" },
+  { "id": "scimago", "label": "SCImago", "kind": "journal", "metrics": ["SJR", "H-index", "quartile", "country", "category"], "cadence": "annual", "url": "https://www.scimagojr.com/", "import": "xlsx, xls, csv" },
+  { "id": "core", "label": "CORE Conference Ranking", "kind": "conference", "metrics": ["conference rank", "ranking year", "discipline"], "cadence": "as published by CORE", "url": "https://portal.core.edu.au/conf-ranks/", "import": "csv, json" }
+]
