@@ -7,7 +7,7 @@ Local-first search portal for journal and conference metadata. Search the bundle
 Requirements: Node.js 18
 
 ```powershell
-npm start
+npm.cmd start
 ```
 
 Open http://localhost:3000.
@@ -25,10 +25,10 @@ Open http://localhost:3000.
 
 ```powershell
 npm install xlsx # only for .xlsx/.xls; CSV, TSV and JSON need no dependency
-npm run import -- --source ablesci --file .\data\imports\ablesci.csv
-npm run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
-npm run import -- --source scimago --file .\data\imports\scimago.csv
-npm run import -- --source core --file .\data\imports\core.csv
+npm.cmd run import -- --source ablesci --file .\data\imports\ablesci.csv
+npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
+npm.cmd run import -- --source scimago --file .\data\imports\scimago.csv
+npm.cmd run import -- --source core --file .\data\imports\core.csv
 ```
 
 The importer merges records by ISSN, maps common column names plus common Chinese labels for IF, and writes the local index to `data/catalog.json`.

@@ -6,10 +6,10 @@
 
 ```powershell
 npm install xlsx
-npm run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
-npm run import -- --source scimago --file .\data\imports\scimago.csv
-npm run import -- --source core --file .\data\imports\core.csv
-npm run import -- --source ablesci --file .\data\imports\ablesci.csv
+npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
+npm.cmd run import -- --source scimago --file .\data\imports\scimago.csv
+npm.cmd run import -- --source core --file .\data\imports\core.csv
+npm.cmd run import -- --source ablesci --file .\data\imports\ablesci.csv
 ```
 
 The importer accepts JSON, CSV, TSV, XLSX and XLS, maps common column names, merges by ISSN, and preserves source-specific metrics. It also accepts optional `deadline`, `submission deadline`, `paper deadline`, or `abstract deadline` columns for conference data. Bundled rows are a small demo snapshot for UI development, not a substitute for the latest official files.
