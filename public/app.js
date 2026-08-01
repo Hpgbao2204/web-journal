@@ -7,7 +7,7 @@ const valueOrDash = value => value !== undefined && value !== null && String(val
 const rank = value => value ? `<span class="rank-pill rank-${escapeHtml(String(value).replace(/[^a-z0-9]/gi, '').toLowerCase())}">${escapeHtml(value)}</span>` : '<span class="muted">—</span>';
 
 function metric(value, label) {
-  return value !== undefined && value !== null && String(value).trim() !== '' ? `<span class="metric-line"><b>${escapeHtml(value)}</b> <small>${label}</small></span>` : '';
+  return value !== undefined && value !== null && value !== 0 && String(value).trim() !== '' ? `<span class="metric-line"><b>${escapeHtml(value)}</b> <small>${label}</small></span>` : '';
 }
 
 function detailList(record) {
@@ -24,7 +24,8 @@ function renderRow(record, index, page, pageSize) {
   const url = safeUrl(record.homepage);
   const title = url ? `<a class="homepage-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(record.title)} ↗</a>` : `<span class="title-text">${escapeHtml(record.title)}</span>`;
   const wos = [metric(record.wos?.impactFactor, 'IF'), record.wos?.quartile ? rank(record.wos.quartile) : ''].filter(Boolean).join('') || '<span class="muted">Không có</span>';
-  const scopus = [metric(record.scopus?.citeScore, 'CiteScore'), metric(record.scopus?.snip, 'SNIP'), metric(record.scopus?.sjr, 'SJR'), record.scopus?.quartile ? rank(record.scopus.quartile) : ''].filter(Boolean).join('') || `<span class="metric-line">${valueOrDash(record.sourceType)}</span>`;
+  const hasScopusMetric = [record.scopus?.citeScore, record.scopus?.snip, record.scopus?.sjr, record.scopus?.quartile].some(value => value !== undefined && value !== null && value !== '' && value !== 0);
+  const scopus = hasScopusMetric ? [metric(record.scopus?.citeScore, 'CiteScore'), metric(record.scopus?.snip, 'SNIP'), metric(record.scopus?.sjr, 'SJR'), record.scopus?.quartile ? rank(record.scopus.quartile) : ''].filter(Boolean).join('') : `<span class="metric-line"><b>—</b> <small>Source title list · không có metric</small></span>`;
   const scimago = [metric(record.scimago?.sjr, 'SJR'), metric(record.scimago?.hIndex, 'H'), record.scimago?.quartile ? rank(record.scimago.quartile) : ''].filter(Boolean).join('') || '<span class="muted">Không có</span>';
   const core = record.core?.rank ? `${rank(record.core.rank)}${metric(record.core.year, 'year')}` : '<span class="muted">—</span>';
   const sourceTags = (record.sources || []).map(source => `<span class="source-tag">${escapeHtml(source)}</span>`).join('');

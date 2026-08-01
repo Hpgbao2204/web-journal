@@ -15,7 +15,7 @@ Open http://localhost:3000.
 ## Data sources
 
 - Ablesci / WoS — Impact Factor, JCR quartile and category.
-- Scopus Source List — ISSN/EISSN, active status, coverage, source type, publisher, OA, language and ASJC. The downloaded title list does not itself contain CiteScore/SNIP/SJR.
+- Scopus Source List — ISSN/EISSN, active status, coverage, source type, publisher, OA, language and ASJC. The “source titles only” workbook does not itself contain CiteScore/SNIP/SJR.
 - SCImago — SJR, H-index, quartile, country and subject category.
 - CORE — conference rank, ranking year and discipline.
 
@@ -27,6 +27,7 @@ Open http://localhost:3000.
 npm install xlsx # only for .xlsx/.xls; CSV, TSV and JSON need no dependency
 npm.cmd run import -- --source ablesci --file .\data\imports\ablesci.csv
 npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
+npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-metrics.xlsx
 npm.cmd run import -- --source scimago --file .\data\imports\scimago.csv
 npm.cmd run import -- --source core --file .\data\imports\core.csv
 ```

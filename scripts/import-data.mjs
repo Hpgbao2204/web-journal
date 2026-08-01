@@ -20,7 +20,7 @@ const clean = value => String(value ?? '').trim();
 const key = value => clean(value).toLowerCase().replace(/[^a-z0-9]+/g, '');
 const identifier = value => clean(value).toLowerCase().replace(/[^0-9x]/g, '');
 const splitList = value => clean(value).split(/[;,|]/).map(v => v.trim()).filter(Boolean);
-const numberOrNull = value => { const n = Number(String(value).replace(',', '.').replace(/[^0-9.-]/g, '')); return Number.isFinite(n) ? n : null; };
+const numberOrNull = value => { const raw = clean(value); if (!raw) return null; const normalized = raw.replace(',', '.').replace(/[^0-9.-]/g, ''); if (!normalized) return null; const n = Number(normalized); return Number.isFinite(n) ? n : null; };
 
 function pick(row, names) {
   const entries = Object.entries(row);
@@ -102,7 +102,12 @@ const rows = await readRows(path.resolve(fileArg));
 const incoming = rows.map(toRecord);
 const current = JSON.parse(await readFile(catalogPath, 'utf8'));
 const identityOf = item => identifier(item.issn) || identifier(item.eissn) || key(item.title);
-const mergeObject = (oldValue = {}, newValue = {}) => Object.fromEntries(Object.entries({ ...oldValue, ...newValue }).filter(([, value]) => value !== undefined && value !== null && value !== ''));
+const metricFields = new Set(['impactFactor', 'citeScore', 'snip', 'sjr', 'hIndex']);
+const mergeObject = (oldValue = {}, newValue = {}) => {
+  const merged = { ...oldValue };
+  for (const [field, value] of Object.entries(newValue)) if (value !== undefined && value !== null && value !== '' && !(metricFields.has(field) && Number(value) === 0)) merged[field] = value;
+  return Object.fromEntries(Object.entries(merged).filter(([field, value]) => value !== undefined && value !== null && value !== '' && !(metricFields.has(field) && Number(value) === 0)));
+};
 const mergeRecords = (old, record) => {
   const merged = { ...old };
   for (const [field, value] of Object.entries(record)) {
