@@ -13,24 +13,33 @@ function metric(value, label) {
 function detailList(record) {
   const details = [
     ['Status', record.status], ['Coverage', record.coverage], ['Open access', record.openAccess],
-    ['Language', record.language], ['ASJC', record.asjcCodes?.join(', ')], ['Updated', record.sourceUpdated],
+    ['JCR status', record.wos?.status], ['JCR year', record.wos?.year],
+    ['Language', record.language], ['ASJC', record.asjcCodes?.join(', ')],
     ['SCImago category', record.scimago?.category], ['SCImago country', record.scimago?.country], ['SCImago total docs', record.scimago?.totalDocs], ['SCImago docs 3 years', record.scimago?.totalDocs3Years], ['SCImago citations 3 years', record.scimago?.totalCitations3Years], ['SCImago citable docs', record.scimago?.citableDocs3Years], ['Citations / doc', record.scimago?.citationsPerDoc2Years], ['Refs / doc', record.scimago?.refsPerDoc], ['Female authors %', record.scimago?.femalePercent], ['Overton', record.scimago?.overton],
     ['Event dates', [record.conferenceMeta?.startDate, record.conferenceMeta?.endDate].filter(Boolean).join(' → ')], ['Location', record.conferenceMeta?.location],
-    ['Deadline', record.deadlines?.join(', ')]
+    ['Deadline', record.deadlines?.join(', ')], ['CORE acronym', record.core?.acronym],
+    ['CORE field', record.core?.field], ['DBLP', record.core?.dblp]
   ].filter(([, value]) => value !== undefined && value !== null && String(value).trim() !== '');
-  return details.length ? `<details class="details"><summary>Chi tiết thêm</summary><dl>${details.map(([label, value]) => `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl></details>` : '';
+  return details.length ? `<details class="details"><summary>Chi tiết thêm</summary><dl>${details.map(([label, value]) => {
+    const url = safeUrl(value);
+    const display = url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">Mở liên kết ↗</a>` : escapeHtml(value);
+    return `<div><dt>${label}</dt><dd>${display}</dd></div>`;
+  }).join('')}</dl></details>` : '';
 }
 
 function renderRow(record, index, page, pageSize) {
-  const url = safeUrl(record.homepage);
+  const url = safeUrl(record.homepage || record.core?.sourceUrl);
   const title = url ? `<a class="homepage-link" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${escapeHtml(record.title)} ↗</a>` : `<span class="title-text">${escapeHtml(record.title)}</span>`;
-  const wos = [metric(record.wos?.impactFactor, 'IF'), record.wos?.quartile ? rank(record.wos.quartile) : ''].filter(Boolean).join('') || '<span class="muted">Không có</span>';
+  const wosMetrics = [metric(record.wos?.impactFactor, 'IF'), record.wos?.quartile ? rank(record.wos.quartile) : ''].filter(Boolean).join('');
+  const wosStatus = record.type === 'conference'
+    ? '<span class="muted">Không áp dụng</span>'
+    : `<span class="metric-line wos-status"><small>${escapeHtml(record.wos?.status || 'Chưa kiểm tra JCR')}</small></span>`;
+  const wos = wosMetrics || wosStatus;
   const hasScopusMetric = [record.scopus?.citeScore, record.scopus?.snip, record.scopus?.sjr, record.scopus?.quartile].some(value => value !== undefined && value !== null && value !== '' && value !== 0);
-  const scopus = hasScopusMetric ? [metric(record.scopus?.citeScore, 'CiteScore'), metric(record.scopus?.snip, 'SNIP'), metric(record.scopus?.sjr, 'SJR'), record.scopus?.quartile ? rank(record.scopus.quartile) : ''].filter(Boolean).join('') : `<span class="metric-line"><b>—</b> <small>Source title list · không có metric</small></span>`;
+  const scopus = hasScopusMetric ? [metric(record.scopus?.citeScore, 'CiteScore'), metric(record.scopus?.snip, 'SNIP'), metric(record.scopus?.sjr, 'SJR'), record.scopus?.quartile ? rank(record.scopus.quartile) : ''].filter(Boolean).join('') : '<span class="muted">Chưa có metrics</span>';
   const scimago = [metric(record.scimago?.rank, 'rank'), metric(record.scimago?.sjr, 'SJR'), metric(record.scimago?.hIndex, 'H'), record.scimago?.quartile ? rank(record.scimago.quartile) : ''].filter(Boolean).join('') || '<span class="muted">Không có</span>';
   const core = record.core?.rank ? `${rank(record.core.rank)}${metric(record.core.year, 'year')}` : '<span class="muted">—</span>';
-  const sourceTags = (record.sources || []).map(source => `<span class="source-tag">${escapeHtml(source)}</span>`).join('');
-  return `<tr><td class="number-col">${(page - 1) * pageSize + index + 1}</td><td class="title-col"><div class="title-cell"><div>${title}</div><div class="type-note">${escapeHtml(record.publisher || 'Publisher chưa có dữ liệu')} ${record.eissn ? `· EISSN ${escapeHtml(record.eissn)}` : ''}</div>${detailList(record)}</div></td><td><span class="type-badge">${record.type === 'conference' ? 'Hội nghị' : 'Tạp chí'}</span></td><td><div class="issn-cell"><b>${valueOrDash(record.issn)}</b><small>${record.eissn ? `EISSN ${escapeHtml(record.eissn)}` : 'EISSN —'}</small></div></td><td class="publisher-cell">${valueOrDash(record.publisher)}</td><td>${wos}</td><td>${scopus}</td><td>${scimago}</td><td>${core}</td><td><div class="source-cell">${sourceTags || '<span class="muted">—</span>'}</div></td></tr>`;
+  return `<tr><td class="number-col">${(page - 1) * pageSize + index + 1}</td><td class="title-col"><div class="title-cell"><div>${title}</div><div class="type-note">${escapeHtml(record.publisher || record.core?.acronym || 'Publisher chưa có dữ liệu')} ${record.eissn ? `· EISSN ${escapeHtml(record.eissn)}` : ''}</div>${detailList(record)}</div></td><td><span class="type-badge">${record.type === 'conference' ? 'Hội nghị' : 'Tạp chí'}</span></td><td><div class="issn-cell"><b>${valueOrDash(record.issn)}</b><small>${record.eissn ? `EISSN ${escapeHtml(record.eissn)}` : 'EISSN —'}</small></div></td><td class="publisher-cell">${valueOrDash(record.publisher)}</td><td>${wos}</td><td>${scopus}</td><td>${scimago}</td><td>${core}</td></tr>`;
 }
 
 function renderPagination(data) {
@@ -44,14 +53,14 @@ function renderPagination(data) {
 
 async function loadStats() {
   const response = await fetch('/api/stats'); const data = await response.json();
-  $('#stats').innerHTML = `<div class="stat"><span class="number">${data.total.toLocaleString()}</span><span class="label">Records indexed</span></div><div class="stat"><span class="number">${data.journals.toLocaleString()}</span><span class="label">Journals</span></div><div class="stat"><span class="number">${data.conferences.toLocaleString()}</span><span class="label">Conferences</span></div><div class="stat"><span class="number">${data.sources.length}</span><span class="label">Data sources</span></div>`;
+  $('#stats').innerHTML = `<div class="stat"><span class="number">${data.total.toLocaleString()}</span><span class="label">Records indexed</span></div><div class="stat"><span class="number">${data.journals.toLocaleString()}</span><span class="label">Journals</span></div><div class="stat"><span class="number">${data.conferences.toLocaleString()}</span><span class="label">Conferences</span></div><div class="stat"><span class="number">${data.coreConferences.toLocaleString()}</span><span class="label">CORE / ICORE</span></div>`;
 }
 
 async function search(resetPage = true) {
   if (resetPage) state.page = 1;
   const query = $('#search-input').value.trim();
-  const params = new URLSearchParams({ q: query, type: $('#type-filter').value, source: $('#source-filter').value, sort: $('#sort-filter').value, page: state.page, pageSize: state.pageSize });
-  $('#results-body').innerHTML = '<tr><td colspan="10" class="loading">Đang tra cứu local index…</td></tr>'; $('#empty').hidden = true;
+  const params = new URLSearchParams({ q: query, type: $('#type-filter').value, sort: $('#sort-filter').value, page: state.page, pageSize: state.pageSize });
+  $('#results-body').innerHTML = '<tr><td colspan="9" class="loading">Đang tra cứu dữ liệu và bổ sung IF/homepage…</td></tr>'; $('#empty').hidden = true;
   const response = await fetch(`/api/search?${params}`); const data = await response.json();
   $('#result-title').textContent = query ? `Kết quả cho “${query}”` : 'Tất cả nguồn dữ liệu';
   $('#result-count').textContent = `${data.total.toLocaleString()} records · ${data.results.length} dòng trên trang này`;
@@ -62,6 +71,6 @@ async function search(resetPage = true) {
 }
 
 $('#search-form').addEventListener('submit', event => { event.preventDefault(); search(true); });
-$('#type-filter').addEventListener('change', () => search(true)); $('#source-filter').addEventListener('change', () => search(true)); $('#sort-filter').addEventListener('change', () => search(true));
+$('#type-filter').addEventListener('change', () => search(true)); $('#sort-filter').addEventListener('change', () => search(true));
 document.querySelectorAll('[data-query]').forEach(button => button.addEventListener('click', () => { $('#search-input').value = button.dataset.query; search(true); }));
 loadStats(); search(true);

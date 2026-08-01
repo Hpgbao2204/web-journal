@@ -4,7 +4,7 @@
   "private": true,
   "description": "Local search portal for journal and conference metadata",
   "type": "module",
-  "scripts": { "start": "node server.js", "import": "node scripts/import-data.mjs", "crawl:conferences": "node scripts/crawl-conferences.mjs", "enrich:homepages": "node scripts/enrich-homepages.mjs" },
+  "scripts": { "start": "node server.js", "import": "node scripts/import-data.mjs", "sync:core": "node scripts/sync-core.mjs", "crawl:conferences": "node scripts/crawl-conferences.mjs", "enrich:homepages": "node scripts/enrich-homepages.mjs", "enrich:conference-homepages": "node scripts/enrich-conference-homepages.mjs" },
   "dependencies": { "xlsx": "^0.18.5" },
   "engines": { "node": ">=18" }
 }

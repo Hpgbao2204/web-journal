@@ -19,7 +19,7 @@ Open http://localhost:3000.
 - SCImago — SJR, H-index, quartile, country and subject category.
 - CORE — conference rank, ranking year and discipline.
 
-`data/catalog.json` contains the imported June 2026 Scopus Source List plus a few clearly marked demo rows for Ablesci/SCImago/CORE UI coverage. Demo values are marked `demo snapshot`; do not present them as the latest official metrics. The downloaded Scopus workbook is kept at `data/imports/scopus-source-list-2026-06.xlsx`.
+`data/catalog.json` contains the imported June 2026 Scopus Source List, SCImago 2025 and the current ICORE 2026 conference ranking snapshot. The downloaded source files are kept under `data/` and `data/imports/`.
 
 ## Import official files
 
@@ -39,7 +39,25 @@ The importer merges records by normalized ISSN/EISSN or title, maps common colum
 
 The UI shows 15 rows per page in an Excel-like table, sorts by rank (`Q1 → A* → Q2 → A → Q3 → Q4`), and links to a homepage when one is available.
 
-Conference homepage enrichment:
+On the first search for a journal, the server looks up its ISSN on AbleSci for IF/JCR status and batches missing homepage lookups through OpenAlex. Results are saved in `data/enrichment-cache.json`; later searches keep working from the local cache. A journal absent from JCR is shown explicitly instead of receiving a fake IF value.
+
+## Sync conference data and homepages
+
+Download all current ICORE 2026 rows from the official conference portal and merge them into the catalog:
+
+```powershell
+npm.cmd run sync:core
+```
+
+Find official homepages for ranked conferences through Wikidata. The bot processes A* first and only accepts conference-like matches:
+
+```powershell
+npm.cmd run enrich:conference-homepages -- --limit 100 --delay 900
+```
+
+Every ICORE row also stores its CORE profile and DBLP URL. If no official homepage has been verified yet, clicking the title opens the CORE profile as a safe fallback.
+
+Optional deadline/event crawl from a list of known official URLs:
 
 ```powershell
 Copy-Item .\data\imports\conference-seeds.example.json .\data\imports\conference-seeds.json

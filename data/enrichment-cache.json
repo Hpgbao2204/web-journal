@@ -1,0 +1,343 @@
+{
+  "byIssn": {
+    "10045759": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.303Z"
+      }
+    },
+    "10556338": {},
+    "12808571": {
+      "homepage": "http://sciencepress.mnhn.fr/en/periodiques/adansonia",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.618Z"
+      }
+    },
+    "13386034": {
+      "wos": {
+        "indexed": false,
+        "impactFactor": null,
+        "quartile": "",
+        "status": "Không thuộc JCR mới nhất",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=rwOgEr",
+        "checkedAt": "2026-08-01T03:18:29.139Z"
+      }
+    },
+    "14309602": {
+      "homepage": "http://link.springer.com/bookseries/3302",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.754Z"
+      }
+    },
+    "14764687": {
+      "homepage": "https://www.nature.com/nature/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 56.1,
+        "quartile": "Q1",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=DYlYL5",
+        "checkedAt": "2026-08-01T03:19:47.134Z"
+      }
+    },
+    "15163210": {
+      "homepage": "http://www.revistaaec.com/index.php/revistaaec",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 0.4,
+        "quartile": "Q3",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=rwvGYD",
+        "checkedAt": "2026-08-01T03:22:45.224Z"
+      }
+    },
+    "16135113": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.596Z"
+      }
+    },
+    "16440749": {
+      "homepage": "http://wydawnictwo.uwm.edu.pl/artykul/14/czytelnia.html",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.300Z"
+      }
+    },
+    "16440765": {
+      "homepage": "http://acta.urk.edu.pl/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.459Z"
+      }
+    },
+    "16714083": {
+      "homepage": "https://www.nature.com/aps/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.349Z"
+      }
+    },
+    "17457254": {
+      "homepage": "https://www.nature.com/aps/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.349Z"
+      }
+    },
+    "19844182": {
+      "homepage": "http://www.revistaaec.com/index.php/revistaaec",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 0.4,
+        "quartile": "Q3",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=rwvGYD",
+        "checkedAt": "2026-08-01T03:22:45.224Z"
+      }
+    },
+    "20133294": {
+      "homepage": "http://www.452f.com/index.php",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "impactFactor": null,
+        "quartile": "",
+        "status": "Không thuộc JCR mới nhất",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=5gV4Mp",
+        "checkedAt": "2026-08-01T03:18:17.534Z"
+      }
+    },
+    "20973462": {
+      "homepage": "https://AIA.Springeropen.com",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.789Z"
+      }
+    },
+    "21517290": {
+      "homepage": "https://www.tandfonline.com/toc/raut20/current",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:22:48.921Z"
+      }
+    },
+    "21979375": {
+      "homepage": "http://link.springer.com/bookseries/3302",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.754Z"
+      }
+    },
+    "22135812": {
+      "homepage": "https://www.springer.com/journal/40328",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 2.6,
+        "quartile": "Q2",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=5E1Gd5",
+        "checkedAt": "2026-08-01T03:18:29.158Z"
+      }
+    },
+    "22135820": {
+      "homepage": "https://www.springer.com/journal/40328",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 2.6,
+        "quartile": "Q2",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=5E1Gd5",
+        "checkedAt": "2026-08-01T03:18:29.158Z"
+      }
+    },
+    "23639466": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.596Z"
+      }
+    },
+    "24121908": {
+      "homepage": "https://abs.pensoft.net/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "impactFactor": null,
+        "quartile": "",
+        "status": "Không thuộc JCR mới nhất",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=52Xxxr",
+        "checkedAt": "2026-08-01T03:18:29.101Z"
+      }
+    },
+    "24500771": {
+      "homepage": "http://wydawnictwo.uwm.edu.pl/artykul/14/czytelnia.html",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.300Z"
+      }
+    },
+    "25122142": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.754Z"
+      }
+    },
+    "25122150": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.754Z"
+      }
+    },
+    "25244000": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.598Z"
+      }
+    },
+    "25244019": {
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.598Z"
+      }
+    },
+    "25246992": {
+      "homepage": "https://AIA.Springeropen.com",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.789Z"
+      }
+    },
+    "25247921": {
+      "homepage": "https://link.springer.com/journal/42765",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.592Z"
+      }
+    },
+    "07308078": {
+      "homepage": "https://sigmod.org/",
+      "homepageSource": "OpenAlex"
+    },
+    "1146609x": {
+      "homepage": "https://www.journals.elsevier.com/acta-oecologica",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 1.8,
+        "quartile": "Q3",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=w5gMKr",
+        "checkedAt": "2026-08-01T03:18:29.141Z"
+      }
+    },
+    "2524793x": {
+      "homepage": "https://link.springer.com/journal/42765",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:18:29.592Z"
+      }
+    },
+    "00280836": {
+      "homepage": "https://www.nature.com/nature/",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": true,
+        "impactFactor": 56.1,
+        "quartile": "Q1",
+        "status": "Có trong JCR",
+        "year": "2026",
+        "source": "AbleSci",
+        "sourceUrl": "https://www.ablesci.com/journal/detail?id=DYlYL5",
+        "checkedAt": "2026-08-01T03:19:47.134Z"
+      }
+    },
+    "08989575": {
+      "homepage": "https://www.tandfonline.com/toc/raut20/current",
+      "homepageSource": "OpenAlex",
+      "wos": {
+        "indexed": false,
+        "status": "Không tìm thấy trên AbleSci/JCR",
+        "source": "AbleSci",
+        "checkedAt": "2026-08-01T03:22:48.921Z"
+      }
+    }
+  }
+}
