@@ -34,6 +34,8 @@ npm.cmd run import -- --source core --file .\data\imports\core.csv
 
 The importer merges records by normalized ISSN/EISSN or title, maps common column names plus common Chinese labels for IF, and writes the local index to `data/catalog.json`.
 
+`data/imports/scopus-source-metrics.xlsx` is bundled as a small development seed so the command works immediately. Replace it with the real Scopus **source titles and metrics** export when you have access; the seed values are not an official current Scopus snapshot.
+
 The UI shows 15 rows per page in an Excel-like table, sorts by rank (`Q1 → A* → Q2 → A → Q3 → Q4`), and links to a homepage when one is available.
 
 Conference homepage enrichment:

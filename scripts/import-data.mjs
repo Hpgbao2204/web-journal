@@ -88,7 +88,7 @@ function toRecord(row, index) {
     deadlines: splitList(pick(row, ['deadline', 'submission deadline', 'paper deadline', 'abstract deadline', 'due date'])),
     homepage,
     sources: [source],
-    sourceUpdated: pick(row, ['year', 'data year', 'updated', 'update date']) || new Date().getFullYear().toString()
+    sourceUpdated: pick(row, ['year', 'data year', 'metric year', 'updated', 'update date']) || new Date().getFullYear().toString()
   };
   if (source === 'ablesci') base.wos = { impactFactor: numberOrNull(pick(row, ['impact factor', 'if', '影响因子'])), quartile: pick(row, ['quartile', 'jcr quartile', '分区']), category: pick(row, ['category', 'subject category']) };
   if (source === 'scopus') base.scopus = { citeScore: numberOrNull(pick(row, ['citescore', 'cite score'])), snip: numberOrNull(pick(row, ['snip'])), sjr: numberOrNull(pick(row, ['sjr'])), percentile: pick(row, ['percentile', 'highest percentile']), quartile: pick(row, ['quartile', 'citescore quartile']) };

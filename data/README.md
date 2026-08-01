@@ -17,6 +17,8 @@ The importer accepts JSON, CSV, TSV, XLSX and XLS, maps common column names, mer
 
 For CiteScore/SNIP/SJR, export **Download source titles and metrics** from Scopus Sources. The **source titles only** export intentionally has no citation metrics; the app now labels those cells as `Source title list · không có metric` instead of showing fake zeroes.
 
+The repo includes `imports/scopus-source-metrics.xlsx` as a small development seed so the import command is runnable immediately. Replace that file with the official export for production use.
+
 See `sources.json` for source URLs, update cadence, and the metrics each source contributes. Ranking files do not normally contain conference submission deadlines, so deadlines must come from an official conference CFP or a separate calendar dataset.
 
 ## Conference crawler
