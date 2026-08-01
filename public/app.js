@@ -14,6 +14,7 @@ function detailList(record) {
   const details = [
     ['Status', record.status], ['Coverage', record.coverage], ['Open access', record.openAccess],
     ['Language', record.language], ['ASJC', record.asjcCodes?.join(', ')], ['Updated', record.sourceUpdated],
+    ['SCImago category', record.scimago?.category], ['SCImago country', record.scimago?.country], ['SCImago total docs', record.scimago?.totalDocs], ['SCImago docs 3 years', record.scimago?.totalDocs3Years], ['SCImago citations 3 years', record.scimago?.totalCitations3Years], ['SCImago citable docs', record.scimago?.citableDocs3Years], ['Citations / doc', record.scimago?.citationsPerDoc2Years], ['Refs / doc', record.scimago?.refsPerDoc], ['Female authors %', record.scimago?.femalePercent], ['Overton', record.scimago?.overton],
     ['Event dates', [record.conferenceMeta?.startDate, record.conferenceMeta?.endDate].filter(Boolean).join(' → ')], ['Location', record.conferenceMeta?.location],
     ['Deadline', record.deadlines?.join(', ')]
   ].filter(([, value]) => value !== undefined && value !== null && String(value).trim() !== '');
