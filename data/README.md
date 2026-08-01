@@ -9,6 +9,7 @@ npm install xlsx
 npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-list.xlsx
 npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-metrics.xlsx
 npm.cmd run import -- --source scimago --file .\data\imports\scimago.csv
+npm.cmd run import -- --source scimago --file ".\data\scimagojr 2025.csv" --year 2025
 npm.cmd run import -- --source core --file .\data\imports\core.csv
 npm.cmd run import -- --source ablesci --file .\data\imports\ablesci.csv
 ```
