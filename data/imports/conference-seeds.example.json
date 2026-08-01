@@ -1,0 +1,4 @@
+[
+  { "id": "demo-acm-sigmod", "title": "ACM SIGMOD Conference", "url": "https://sigmod.org/" },
+  { "id": "demo-neurips", "title": "Annual Conference on Neural Information Processing Systems", "url": "https://neurips.cc/" }
+]

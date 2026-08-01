@@ -1,1 +1,54 @@
-<!doctype html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Research Index — Journal & Conference Search</title><link rel="stylesheet" href="/styles.css"/></head><body><main class="shell"><header class="topbar"><a class="brand" href="/"><span class="brand-mark">R</span><span>Research Index</span></a><span class="status"><i></i> Local dataset</span></header><section class="hero"><p class="eyebrow">ACADEMIC DISCOVERY TOOL</p><h1>Tìm đúng nơi để<br/><em>công bố</em> nghiên cứu.</h1><p class="subhead">Tra cứu tạp chí và hội nghị từ nhiều nguồn xếp hạng trong một nơi.</p><form id="search-form" class="search-box"><span class="search-icon">⌕</span><input id="search-input" autocomplete="off" placeholder="Tên tạp chí, hội nghị, ISSN hoặc từ khóa..."/><button type="submit">Search <span>↵</span></button></form><div class="suggestions"><span>Thử tìm:</span> <button data-query="Nature">Nature</button><button data-query="SIGMOD">SIGMOD</button><button data-query="machine learning">machine learning</button></div></section><section class="stats" id="stats"></section><section class="results-section"><div class="results-heading"><div><p class="eyebrow">SEARCH RESULTS</p><h2 id="result-title">Khám phá dữ liệu</h2></div><div class="filters"><select id="type-filter"><option value="all">Tất cả loại</option><option value="journal">Tạp chí</option><option value="conference">Hội nghị</option></select><select id="source-filter"><option value="all">Tất cả nguồn</option><option value="ablesci">Ablesci / WoS</option><option value="scopus">Scopus</option><option value="scimago">SCImago</option><option value="core">CORE</option></select></div></div><div id="results" class="results"><div class="empty"><div class="empty-icon">⌕</div><p>Nhập từ khóa để bắt đầu tra cứu.</p></div></div></section><footer><span>Research Index · local-first</span><span>Snapshot demo · cập nhật nguồn khi import file mới</span></footer></main><script src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Index — Journal & Conference Search</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/"><span class="brand-mark">R</span><span>Research Index</span></a>
+        <span class="status"><i></i> Local dataset</span>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">ACADEMIC DISCOVERY TOOL</p>
+        <h1>Tìm đúng nơi để<br /><em>công bố</em> nghiên cứu.</h1>
+        <p class="subhead">Tra cứu tạp chí và hội nghị từ nhiều nguồn xếp hạng trong một bảng dữ liệu.</p>
+        <form id="search-form" class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="search-input" autocomplete="off" placeholder="Tên tạp chí, hội nghị, ISSN hoặc từ khóa..." />
+          <button type="submit">Search <span>↵</span></button>
+        </form>
+        <div class="suggestions"><span>Thử tìm:</span> <button data-query="Nature">Nature</button><button data-query="SIGMOD">SIGMOD</button><button data-query="machine learning">machine learning</button></div>
+      </section>
+
+      <section class="stats" id="stats"></section>
+
+      <section class="results-section">
+        <div class="results-heading">
+          <div><p class="eyebrow">INDEXED RECORDS</p><h2 id="result-title">Tất cả nguồn dữ liệu</h2></div>
+          <div class="filters">
+            <select id="type-filter"><option value="all">Tất cả loại</option><option value="journal">Tạp chí</option><option value="conference">Hội nghị</option></select>
+            <select id="source-filter"><option value="all">Tất cả nguồn</option><option value="ablesci">Ablesci / WoS</option><option value="scopus">Scopus</option><option value="scimago">SCImago</option><option value="core">CORE</option></select>
+            <select id="sort-filter"><option value="rank">Ưu tiên rank</option><option value="title">Theo tên</option><option value="publisher">Theo publisher</option></select>
+          </div>
+        </div>
+        <div class="table-meta"><span id="result-count">Đang tải...</span><span id="page-label"></span></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="number-col">#</th><th class="title-col">Tên / Homepage</th><th>Loại</th><th>ISSN / EISSN</th><th>Publisher</th><th>WoS / IF</th><th>Scopus</th><th>SCImago</th><th>CORE</th><th>Nguồn</th></tr></thead>
+            <tbody id="results-body"></tbody>
+          </table>
+          <div id="empty" class="empty" hidden><div class="empty-icon">∅</div><p>Không tìm thấy bản ghi phù hợp.</p></div>
+        </div>
+        <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
+      </section>
+
+      <footer><span>Research Index · local-first</span><span>Rank sort: Q1 → A* → Q2 → A → Q3 → Q4</span></footer>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
