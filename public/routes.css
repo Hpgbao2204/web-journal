@@ -1,0 +1,40 @@
+.section-nav {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.section-nav a {
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.section-nav a.active,
+.section-nav a:hover {
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.scopus-indexed {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.details a {
+  color: var(--green);
+}
+
+.metric-line a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .section-nav a { padding: 7px 9px; }
+  .brand span:last-child { display: none; }
+}

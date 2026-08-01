@@ -10,14 +10,16 @@ Requirements: Node.js 18
 npm.cmd start
 ```
 
-Open http://localhost:3000.
+Open:
+
+- http://localhost:3000/journals — journal search (primary page)
+- http://localhost:3000/conferences — conference search (separate page)
 
 ## Data sources
 
 - Ablesci / WoS — Impact Factor, JCR quartile and category.
 - Scopus Source List — ISSN/EISSN, active status, coverage, source type, publisher, OA, language and ASJC. The “source titles only” workbook does not itself contain CiteScore/SNIP/SJR.
 - SCImago — SJR, H-index, quartile, country and subject category.
-- CORE — conference rank, ranking year and discipline.
 
 `data/catalog.json` contains the imported June 2026 Scopus Source List, SCImago 2025 and the current ICORE 2026 conference ranking snapshot. The downloaded source files are kept under `data/` and `data/imports/`.
 
@@ -30,43 +32,32 @@ npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-list.x
 npm.cmd run import -- --source scopus --file .\data\imports\scopus-source-metrics.xlsx
 npm.cmd run import -- --source scimago --file .\data\imports\scimago.csv
 npm.cmd run import -- --source scimago --file ".\data\scimagojr 2025.csv" --year 2025
-npm.cmd run import -- --source core --file .\data\imports\core.csv
 ```
 
 The importer merges records by normalized ISSN/EISSN or title, maps common column names plus common Chinese labels for IF, and writes the local index to `data/catalog.json`.
 
 `data/imports/scopus-source-metrics.xlsx` is bundled as a small development seed so the command works immediately. Replace it with the real Scopus **source titles and metrics** export when you have access; the seed values are not an official current Scopus snapshot.
 
-The UI shows 15 rows per page in an Excel-like table, sorts by rank (`Q1 → A* → Q2 → A → Q3 → Q4`), and links to a homepage when one is available.
+The journal UI shows 15 rows per page in an Excel-like table, sorts by journal quartile (`Q1 → Q2 → Q3 → Q4`), and links titles directly to a verified homepage when one is available. CORE is not shown on either search page.
 
-On the first search for a journal, the server looks up its ISSN on AbleSci for IF/JCR status and batches missing homepage lookups through OpenAlex. Results are saved in `data/enrichment-cache.json`; later searches keep working from the local cache. A journal absent from JCR is shown explicitly instead of receiving a fake IF value.
+On the first search for a journal, the server looks up its exact title and all available ISSNs on AbleSci for IF/JCR status. Lookups are rate-limited and stale negative cache entries are ignored, preventing false “not found” results during AbleSci throttling. Missing homepages are batched through OpenAlex. Results are saved in `data/enrichment-cache.json`; later searches keep working from the local cache.
 
-## Sync conference data and homepages
-
-Download all current ICORE 2026 rows from the official conference portal and merge them into the catalog:
+Preload journal metadata for a search group:
 
 ```powershell
-npm.cmd run sync:core
+npm.cmd run enrich:journals -- --query "IEEE Transactions" --limit 100
 ```
 
-Find official homepages for ranked conferences through Wikidata. The bot processes A* first and only accepts conference-like matches:
+For journals still missing a homepage, enable the slower AbleSci detail-page fallback:
 
 ```powershell
-npm.cmd run enrich:conference-homepages -- --limit 100 --delay 900
+npm.cmd run enrich:journals -- --query "Canadian Journal of Veterinary Research" --limit 1 --deep-homepages
 ```
 
-Every ICORE row also stores its CORE profile and DBLP URL. If no official homepage has been verified yet, clicking the title opens the CORE profile as a safe fallback.
-
-Optional deadline/event crawl from a list of known official URLs:
-
-```powershell
-Copy-Item .\data\imports\conference-seeds.example.json .\data\imports\conference-seeds.json
-npm.cmd run crawl:conferences -- --file .\data\imports\conference-seeds.json --limit 50
-```
+The Scopus source-title workbook proves that a title is indexed and provides status, coverage, Source ID, publisher, OA, language and ASJC. CiteScore/SNIP/SJR are only populated when the official **source titles and metrics** export is imported; they are never fabricated from the title-only file. The UI therefore always shows Scopus membership and coverage, while SCImago SJR/H-index/quartile remain clearly labeled as SCImago data.
 
 ## Source links
 
 - https://www.ablesci.com/journal
 - https://www.scopus.com/sources
 - https://www.scimagojr.com/
-- https://portal.core.edu.au/conf-ranks/
